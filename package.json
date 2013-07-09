@@ -1,6 +1,6 @@
 {
   "name": "hosted-hubot",
-  "version": "2.5.5",
+  "version": "2.5.4",
   "author": "GitHub Inc.",
   "keywords": [
     "github",
@@ -20,7 +20,7 @@
     "url": "https://github.com/github/hubot.git"
   },
   "dependencies": {
-    "hubot": "2.5.5",
+    "hubot": "2.5.4",
     "hubot-scripts": "2.4.6",
     "hubot-hipchat": "~2.5.1-4"
   },
