@@ -23,7 +23,8 @@
     "hubot": "2.5.4",
     "hubot-scripts": "2.4.6",
     "hubot-hipchat": "~2.5.1-4",
-    "ntwitter": "*"
+    "ntwitter": "*",
+    "gitio": "~1.x"
   },
   "engines": {
     "node": ">= 0.8.x",
