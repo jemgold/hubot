@@ -20,7 +20,7 @@ giphyMe = (msg, query, cb) ->
   msg.http(url)
     .query
       q: query
-      api:key: giphy.api_key
+      api_key: giphy.api_key
     .get() (err, res, body) ->
       response = undefined
       try
