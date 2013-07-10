@@ -4,6 +4,10 @@
 # Commands:
 #   hubot gif me <query> - Returns an animated gif matching the requested search term.
 
+giphy =
+  api_key: process.env.HUBOT_GIPHY_API_KEY
+  api_url: 'http://api.giphy.com/v1'
+
 module.exports = (robot) ->
   robot.respond /(gif|giphy)( me)? (.*)/i, (msg) ->
     console.log msg
@@ -11,9 +15,12 @@ module.exports = (robot) ->
       msg.send url
 
 giphyMe = (msg, query, cb) ->
-  q = q: query
-  msg.http('http://api.giphy.com/v1/gifs/search')
-    .query(q)
+  endpoint = '/gifs/search'
+  url = "#{giphy.base_url}#{endpoint}"
+  msg.http(url)
+    .query
+      q: query
+      api:key: giphy.api_key
     .get() (err, res, body) ->
       response = undefined
       try
