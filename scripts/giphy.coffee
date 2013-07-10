@@ -10,13 +10,18 @@ giphy =
 
 module.exports = (robot) ->
   robot.respond /(gif|giphy)( me)? (.*)/i, (msg) ->
-    console.log msg
+    # console.log msg
     giphyMe msg, msg.match[3], (url) ->
       msg.send url
 
 giphyMe = (msg, query, cb) ->
   endpoint = '/gifs/search'
   url = "#{giphy.base_url}#{endpoint}"
+
+  console.log url
+  console.log query
+  console.log giphy.api_key
+
   msg.http(url)
     .query
       q: query
@@ -25,8 +30,8 @@ giphyMe = (msg, query, cb) ->
       response = undefined
       try
         response = JSON.parse(body)
-        console.log '-----RESPONSE-----'
-        console.log response
+        # console.log '-----RESPONSE-----'
+        # console.log response
       catch e
         response = undefined
         this.emit('error', e)
@@ -34,8 +39,8 @@ giphyMe = (msg, query, cb) ->
       if response is undefined
         return
       else
-        console.log '-----ELSE-----'
-        console.log response
+        # console.log '-----ELSE-----'
+        # console.log response
         images = response.data.gifs
         if images.length > 0
           image = msg.random images
