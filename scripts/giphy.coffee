@@ -26,18 +26,14 @@ giphyMe = (msg, query, cb) ->
       response = undefined
       try
         response = JSON.parse(body)
-        # console.log '-----RESPONSE-----'
-        console.log response
-        console.log err
-        console.log body
-        images = response.data.gifs
+        images = response.data
         if images.length > 0
-          console.log images
+          # console.log images
           image = msg.random images
-          cb image.original_url
+          cb image.images.original.url
 
       catch e
         response = undefined
-        this.emit('error', e)
+        cb 'Error'
 
       return if response is undefined
