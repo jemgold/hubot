@@ -18,10 +18,6 @@ giphyMe = (msg, query, cb) ->
   endpoint = '/gifs/search'
   url = "#{giphy.base_url}#{endpoint}"
 
-  console.log url
-  console.log query
-  console.log giphy.api_key
-
   msg.http(url)
     .query
       q: query
@@ -31,17 +27,17 @@ giphyMe = (msg, query, cb) ->
       try
         response = JSON.parse(body)
         # console.log '-----RESPONSE-----'
-        # console.log response
+        console.log response
+        console.log err
+        console.log body
+        images = response.data.gifs
+        if images.length > 0
+          console.log images
+          image = msg.random images
+          cb image.original_url
+
       catch e
         response = undefined
         this.emit('error', e)
 
-      if response is undefined
-        return
-      else
-        # console.log '-----ELSE-----'
-        # console.log response
-        images = response.data.gifs
-        if images.length > 0
-          image = msg.random images
-          cb image.original_url
+      return if response is undefined
