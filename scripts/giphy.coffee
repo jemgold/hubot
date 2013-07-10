@@ -6,7 +6,7 @@
 
 giphy =
   api_key: process.env.HUBOT_GIPHY_API_KEY
-  api_url: 'http://api.giphy.com/v1'
+  base_url: 'http://api.giphy.com/v1'
 
 module.exports = (robot) ->
   robot.respond /(gif|giphy)( me)? (.*)/i, (msg) ->
