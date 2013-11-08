@@ -1,6 +1,9 @@
 # Description:
 #   A way to search images on giphy.com
 #
+# Configuration:
+#   HUBOT_GIPHY_API_KEY
+#
 # Commands:
 #   hubot gif me <query> - Returns an animated gif matching the requested search term.
 
@@ -10,7 +13,6 @@ giphy =
 
 module.exports = (robot) ->
   robot.respond /(gif|giphy)( me)? (.*)/i, (msg) ->
-    # console.log msg
     giphyMe msg, msg.match[3], (url) ->
       msg.send url
 
@@ -28,7 +30,6 @@ giphyMe = (msg, query, cb) ->
         response = JSON.parse(body)
         images = response.data
         if images.length > 0
-          # console.log images
           image = msg.random images
           cb image.images.original.url
 
